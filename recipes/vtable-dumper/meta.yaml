@@ -1,0 +1,46 @@
+{% set name = "vtable-dumper" %}
+{% set version = "1.1" %}
+{% set sha256 = "f0a57a7b82a0a56845cea9ab56ad449e63f5f01c6a0c9f1467efa4ef60dd4a93" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: vtable-dumper-{{ version }}.tar.gz
+  url: https://github.com/lvc/vtable-dumper/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - compiler-flags.patch
+
+build:
+  number: 0
+  skip: True  # [win or osx]
+  script: make -j${CPU_COUNT} prefix=${PREFIX} install
+
+requirements:
+  build:
+    - toolchain
+    - elfutils ==0.167
+  run:
+    - elfutils >=0.167
+
+test:
+  commands:
+    - ldconfig -p | grep libstdc++.so.6 | cut -f 2 -d ">" | head -n1 | xargs vtable-dumper
+
+about:
+  home: https://github.com/lvc/vtable-dumper
+  license: GPL-2.0, LGPL-2.1
+  license_file: LICENSE
+  summary: a tool to list content of virtual tables in a C++ shared library
+
+  description: |
+    Vtable-Dumper - a tool to list content of virtual tables in a C++ shared library
+    It is intended for developers of software libraries and maintainers of Linux
+    distributions who are interested in ensuring backward binary compatibility.
+    The tool is developed by Andrey Ponomarenko: http://abi-laboratory.pro/
+
+extra:
+  recipe-maintainers:
+    - gqmelo

@@ -1,0 +1,11 @@
+--- Makefile	2016-09-17 16:15:29.711756390 -0300
++++ Makefile_new	2016-09-17 16:15:12.391251688 -0300
+@@ -1,7 +1,7 @@
+ prefix ?= /usr
+ 
+ all:
+-	gcc dump-vtable.c -o vtable-dumper -ldl -lelf -lstdc++ -Wall
++	gcc dump-vtable.c -o vtable-dumper -ldl -lelf -lstdc++ -Wall -I${prefix}/include -L${prefix}/lib
+ 
+ install: all
+ 	mkdir -p $(prefix)/bin/

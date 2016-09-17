@@ -1,0 +1,42 @@
+{% set name = "elfutils" %}
+{% set version = "0.167" %}
+{% set sha256 = "3f300087c42b6f35591163b48246b4098ce39c4c6f5d55a83023c903c5776553" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: elfutils-{{ version }}.tar.bz2
+  url: https://fedorahosted.org/releases/e/l/elfutils/{{ version }}/elfutils-{{ version }}.tar.bz2
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [win or osx]
+
+requirements:
+  build:
+    - toolchain
+
+#test:
+#  commands:
+#    - ldconfig -p | grep libstdc++.so.6 | cut -f 2 -d ">" | head -n1 | xargs vtable-dumper
+
+about:
+  home: https://fedorahosted.org/elfutils/
+  license: GPL-2.0, GPL-3.0, LGPL-3.0
+  license_file: COPYING
+  summary: collection of utilities to handle ELF objects
+
+  description: |
+    Elfutils is a collection of utilities, including eu-ld (a linker),
+    eu-nm (for listing symbols from object files), eu-size (for listing the
+    section sizes of an object or archive file), eu-strip (for discarding
+    symbols), eu-readelf (to see the raw ELF file structures), and eu-elflint
+    (to check for well-formed ELF files).
+  dev_url: http://git.fedorahosted.org/git/elfutils.git
+
+extra:
+  recipe-maintainers:
+    - gqmelo

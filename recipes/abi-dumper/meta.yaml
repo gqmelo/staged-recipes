@@ -22,6 +22,7 @@ requirements:
     - perl >=5.8
   run:
     - perl >=5.8
+    - universal-ctags
     - vtable-dumper >=1.1
 
 test:

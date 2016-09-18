@@ -1,0 +1,45 @@
+{% set name = "abi-compliance-checker" %}
+{% set version = "1.99.23" %}
+{% set sha256 = "5d1a66e12b654798a09bdc087bb523bb38dd52bc6a212d604c18b547eb1ca2b2" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: abi-compliance-checker-{{ version }}.tar.gz
+  url: https://github.com/lvc/abi-compliance-checker/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [win or osx]
+  script: make prefix=${PREFIX} install
+
+requirements:
+  build:
+    - toolchain
+    - perl >=5.8
+  run:
+    - perl >=5.8
+    - abi-dumper >=0.99.14
+
+test:
+  commands:
+    - abi-compliance-checker --help
+
+about:
+  home: https://github.com/lvc/abi-compliance-checker
+  license: GPL-2.0, LGPL-2.0
+  license_file: LICENSE
+  summary: a tool to dump ABI of an ELF object containing DWARF debug info.
+
+  description: |
+    ABI Dumper — a tool to dump ABI of an ELF object containing DWARF debug info.
+    The tool is intended to be used with ABI Compliance Checker tool for tracking
+    ABI changes of a C/C++ library or kernel module.
+    The tool is developed by Andrey Ponomarenko: http://abi-laboratory.pro/
+
+extra:
+  recipe-maintainers:
+    - gqmelo

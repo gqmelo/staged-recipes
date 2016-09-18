@@ -1,0 +1,37 @@
+{% set name = "universal-ctags" %}
+{% set version = "0.0.0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/universal-ctags/ctags.git
+  git_rev: c21fa6d28ba30329305acb6e8562cbe4f6a61531
+
+build:
+  number: 0
+  skip: True  # [win]
+
+requirements:
+  build:
+    - automake
+    - toolchain
+    - perl
+    - pkg-config
+
+about:
+  home: https://github.com/universal-ctags/ctags
+  license: GPL-2.0
+  license_file: COPYING
+  summary: generates an index of language objects found in source files that allows these items to be quickly and easily located by a text editor or other utility
+
+  description: |
+    Universal-ctags was created to continue the development of Darren Hiebert’s
+    Exuberant-ctags after activity on that project unfortunately stalled.
+    The goal of this project is to maintain a common/unified space where people
+    interested in improving ctags can work together.
+
+extra:
+  recipe-maintainers:
+    - gqmelo

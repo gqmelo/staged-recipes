@@ -1,0 +1,13 @@
+--- CMakeLists.txt	2016-06-30 08:56:38.000000000 -0300
++++ CMakeLists.txt_new	2016-09-19 13:11:47.981495536 -0300
+@@ -1032,7 +1032,9 @@
+   target_link_libraries(${test} -lrt)
+ endforeach(test)
+ 
+-add_executable(ftrace_helper src/ftrace/ftrace_helper.c)
++# Don't compile ftrace_helper as it needs a newer kernel and it is needed only
++# to debug rr itself
++# add_executable(ftrace_helper src/ftrace/ftrace_helper.c)
+ 
+ include(ProcessorCount)
+ ProcessorCount(N)

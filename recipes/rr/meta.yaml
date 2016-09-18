@@ -1,0 +1,54 @@
+{% set name = "rr" %}
+{% set version = "4.3.0" %}
+{% set sha256 = "46933cdd706d71c3de05b55937c85ee055c08e67e5c1e6a1278c7feb187ca37a" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: rr-{{ version }}.tar.gz
+  url: https://github.com/mozilla/rr/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - dont-compile-ftrace-helper.patch
+
+build:
+  number: 0
+  skip: True  # [win or osx]
+
+requirements:
+  build:
+    - cmake
+    - gdb ==7.11
+    - pexpect 4.2.*
+    - pkg-config
+    - python  # It needs the interpreter only
+    - toolchain
+  run:
+    - gdb >=7.11,<8.0
+
+test:
+  commands:
+    - rr --version
+
+about:
+  home: http://rr-project.org/
+  license:
+  license_file: LICENSE
+  summary: rr is a lightweight tool for recording and replaying execution of applications (trees of processes and threads)
+
+  description: |
+    rr aspires to be your primary debugging tool, replacing — well, enhancing —
+    gdb. You record a failure once, then debug the recording, deterministically,
+    as many times as you want. The same execution is replayed every time.
+    rr also provides efficient reverse execution under gdb. Set breakpoints and
+    data watchpoints and quickly reverse-execute to where they were hit.
+    rr works on real applications such as Firefox, with low overhead. It is
+    being used by many developers inside and outside Mozilla to fix real bugs.
+  doc_url: http://rr-project.org/
+  dev_url: https://github.com/mozilla/rr
+
+extra:
+  recipe-maintainers:
+    - gqmelo

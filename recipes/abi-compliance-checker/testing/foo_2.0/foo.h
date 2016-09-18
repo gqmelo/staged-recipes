@@ -1,2 +1,5 @@
+#include <string>
 
-float doSomething();
+class Foo {
+    std::string doSomething();
+};

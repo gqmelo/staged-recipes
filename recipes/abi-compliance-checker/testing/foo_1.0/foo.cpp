@@ -1,4 +1,5 @@
+#include "foo.h"
 
-int doSomething() {
+int Foo::doSomething() {
     return 1;
 }

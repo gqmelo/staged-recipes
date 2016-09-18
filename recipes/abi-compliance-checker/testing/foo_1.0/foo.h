@@ -1,2 +1,4 @@
 
-int doSomething();
+class Foo {
+    int doSomething();
+};

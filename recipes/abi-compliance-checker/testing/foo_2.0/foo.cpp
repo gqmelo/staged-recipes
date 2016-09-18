@@ -1,4 +1,5 @@
+#include "foo.h"
 
-float doSomething() {
-    return 1.0;
+std::string Foo::doSomething() {
+    return "something";
 }

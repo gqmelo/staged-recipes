@@ -1,0 +1,47 @@
+{% set name = "pyflame" %}
+{% set version = "1.1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/uber/{{ name }}.git
+  git_rev: v{{ version }}
+
+build:
+  number: 0
+  skip: True  # [win or osx]
+
+requirements:
+  build:
+    - python
+    - automake
+    - toolchain
+    - pkg-config
+  run:
+    - python
+
+test:
+  commands:
+    - pyflame --help
+
+about:
+  home: https://github.com/uber/pyflame
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: 'A Ptracing Profiler For Python'
+
+  # The remaining entries in this section are optional, but recommended
+  description: |
+    Pyflame is a tool for generating flame graphs for Python processes. Pyflame
+    is different from existing Python profilers because it doesn't require
+    explicit instrumentation: it will work with any running Python process!
+    Pyflame works by using the ptrace(2) system call to analyze the
+    currently-executing stack trace for a Python process.
+  doc_url: https://github.com/uber/pyflame
+  dev_url: https://github.com/uber/pyflame
+
+extra:
+  recipe-maintainers:
+    - gqmelo

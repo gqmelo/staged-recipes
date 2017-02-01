@@ -1,0 +1,44 @@
+{% set name = "waffle" %}
+{% set version = "1.5.2" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/waffle-gl/{{ name }}.git
+  git_rev: v{{ version }}
+
+build:
+  number: 0
+  skip: True  # [win]
+
+requirements:
+  build:
+    - cmake
+
+# test:
+#   # Some package might need a `test/commands` key to check CLI.
+#   # List all the packages/modules that `run_test.py` imports.
+#   imports:
+#     - simplejson
+#     - simplejson.tests
+
+about:
+  home: http://www.waffle-gl.org/
+  license: Apache-2.0
+  license_family: Apache
+  license_file: LICENSE.txt
+  summary: 'cross-platform C library that allows one to defer selection of an OpenGL API and window system until runtime'
+
+  description: |
+    Waffle is a cross-platform C library that allows one to defer selection of
+    an OpenGL API and window system until runtime. For example, on Linux,
+    Waffle enables an application to select X11/EGL with an OpenGL 3.3 core
+    profile, Wayland with OpenGL ES2, and other window system / API combinations.
+  doc_url: http://www.waffle-gl.org/man/index.html
+  dev_url: https://github.com/waffle-gl/waffle
+
+extra:
+  recipe-maintainers:
+    - gqmelo

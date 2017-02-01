@@ -17,17 +17,16 @@ build:
 requirements:
   build:
     - cmake
-    - mako
-    - numpy
+    - mako 1.*
+    - numpy >=1.10  # Only needed during build
     - python
-    - six
-    - waffle
+    - six 1.*
+    - waffle 1.5.*
   run:
-    - mako
-    - numpy
+    - mako 1.*
     - python
-    - six
-    - waffle
+    - six 1.*
+    - waffle >=1.5,<2
 
 test:
   commands:

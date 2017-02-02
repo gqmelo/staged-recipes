@@ -17,6 +17,8 @@ build:
 requirements:
   build:
     - cmake
+  run:  # [win]
+    - vs2015_runtime  # [win]
 
 # test:
 #   # Some package might need a `test/commands` key to check CLI.

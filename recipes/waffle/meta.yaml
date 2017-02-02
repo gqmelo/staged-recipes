@@ -11,7 +11,8 @@ source:
 
 build:
   number: 0
-  skip: True  # [win]
+  skip: True  # [win and not py35]
+  # It does not seem necessary to declare vc features as it is not C++
 
 requirements:
   build:
